@@ -6,7 +6,7 @@ from pydantic import BaseSettings, Field, PostgresDsn, validator
 
 HOST_WILDCARD = "Host must be like '*.example.com'."
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-print('BASE_DIR', BASE_DIR)
+
 
 class Settings(BaseSettings):
     DB_USER: Final[str] = Field(..., env='DB_USER')
