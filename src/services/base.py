@@ -75,9 +75,9 @@ class ReadServiceMixin(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
 class UpdateServiceMixin(Generic[ModelType, CreateSchemaType, UpdateSchemaType]):
 
-    async def update_object(self, db: AsyncSession, *, id: UUID, obj_in: UpdateSchemaType) -> ModelType:
+    async def update_object(self, db: AsyncSession, *, id: UUID, obj: UpdateSchemaType) -> ModelType:
         statement = update(self._model).where(self._model.id == id).where(self._model.is_delete == False)
-        statement = statement.values(obj_in.__dict__).returning(self._model)
+        statement = statement.values(obj.__dict__).returning(self._model)
         obj = await db.execute(statement=statement)
         return obj.one_or_none()
 
