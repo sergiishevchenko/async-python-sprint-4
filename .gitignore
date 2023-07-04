@@ -5,3 +5,4 @@ __pycache__/
 myenv
 *.log
 .env
+.pytest_cache
